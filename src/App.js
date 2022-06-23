@@ -28,7 +28,7 @@ function App() {
 					<GlobalStyles />
 					<div className="App" id="page-top">
 						<Routes>
-							<Route path="/" component={ MainContainer } />
+							<Route path="*" element={ <MainContainer /> } />
 						</Routes>
 					</div>
 				</BrowserRouter>
