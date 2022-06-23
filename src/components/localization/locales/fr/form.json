@@ -1,4 +1,8 @@
 {
 	"edit_your_contact_info": "Modifier vos coordonnées",
-	"first_name": "Prénom"
+	"first_name": "Prénom",
+	"job_title": "Titre d'emploi",
+	"last_name": "Nom de famille",
+	"phone_number": "Numéro de téléphone",
+	"save": "réserver"
 }

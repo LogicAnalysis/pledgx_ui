@@ -1,5 +1,8 @@
 {
 	"edit_your_contact_info": "Edit your contact information",
 	"first_name": "First Name",
+	"job_title": "Job Title",
+	"last_name": "Last Name",
+	"phone_number": "Phone Number",
 	"save": "Save"
 }
