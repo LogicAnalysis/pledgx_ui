@@ -5,24 +5,21 @@ input {
 /* ------------------------------------------------- BUTTONS ------------------------------------------------- */
 button {
 	cursor: pointer;
-	font-family: 'Mulish', sans-serif !important;
 }
 
-.pledgx-btn-pro,
-.pledgx-btn-pro:hover {
-	font-family: 'Mulish', sans-serif;
-	font-weight: 700;
+.pledgx-form-btn,
+.pledgx-form-btn:hover {
 	letter-spacing: 0px;
 	text-decoration: none !important;
 	text-transform: uppercase;
 	text-align: center;
 	outline: none !important;
 	/*display: inline-block;*/
-	border: 3px solid var(--colors-brand-green-primary);
-	border-radius: 10px;
-	background-color: var(--colors-brand-green-primary);
+	border: 3px solid var(--colors-orange);
+	border-radius: 5px;
+	background-color: var(--colors-orange);
 	color: white;
-	padding: .5rem 2rem;
+	padding: .5rem 4rem;
 	font-size: 1rem;
 	transition: all .2s;
 	display: flex;
@@ -30,14 +27,124 @@ button {
 	justify-content: center;
 	cursor: pointer;
 }
-.pledgx-btn-pro:hover {
+.pledgx-form-btn:hover {
 	box-sizing: border-box;
-	background-color: var(--colors-brand-green-secondary);
-	border: 3px solid var(--colors-brand-green-secondary);
+	background-color: var(--colors-main-highlight-bg);
+	border: 3px solid var(--colors-main-highlight-bg);
 }
 
 /* ------------------------------------------------- FORM ------------------------------------------------- */
 /* pledgx-form */
+
+.pledgx-form {
+	height: 100%;
+	width: 100%;
+	color: var(--colors-main-text);
+	display: flex;
+	justify-content: space-between;
+	padding: 2rem 10rem;
+}
+
+.pledgx-form > .form-top-container {
+	flex: 1;
+}
+
+.pledgx-form > .form-top-container > .form-pfp-area {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.pledgx-form > .form-top-container > .form-fields-container > .form-fields-row > .form-element-container {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: .5rem;
+	padding: 0 .5rem;
+}
+.pledgx-form > .form-top-container > .form-fields-container > .form-fields-row > .form-element-container > label {
+	font-size: 1.2rem;
+}
+.pledgx-form > .form-top-container > .form-fields-container > .form-fields-row > .form-element-container > input,
+.pledgx-form > .form-top-container > .form-fields-container > .form-fields-row > .form-element-container > input:focus {
+	background-color: var(--colors-main-input-bg);
+	border: 1px solid var(--colors-orange);
+	outline: none;
+	height: 4rem;
+	width: 100%;
+	font-size: 1.7rem;
+	color: var(--colors-main-text);
+	padding-left: 2rem;
+	padding-right: 1rem;
+	border-radius: 5px;
+}
+.pledgx-form > .form-top-container > .form-fields-container > .form-fields-row > .form-element-container > input::placeholder {
+	font-size: 1.5rem;
+	transform:translate3d(0,-.25rem,0);
+	color: var(--colors-main-input-placeholder);
+}
+
+.pledgx-form > .form-top-container > .form-fields-container > .form-name-row {
+	display: flex;
+	align-items: center;
+}
+.pledgx-form > .form-top-container > .form-fields-container > .form-name-row > .form-element-container {
+	width: 50%;
+}
+
+.pledgx-form > .form-top-container > .form-fields-container > .form-fields-row > .form-image-radio {
+	padding: 1rem 2rem;
+	background-color: red;
+}
+
+.pledgx-form > .form-top-container > .form-fields-container > .form-fields-row > .form-country-selector-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 14rem;
+	background-color: var(--colors-main-input-bg);
+	border: 1px solid var(--colors-subtle-highlight);
+	border-radius: 10px;
+}
+.pledgx-form > .form-top-container > .form-fields-container > .form-fields-row > .form-country-selector-container.selected {
+	background-color: rgba(var(--colors-orange-rgb), .3);
+	border: 1px solid var(--colors-orange);
+}
+
+.pledgx-form > .form-top-container > .form-fields-container > .form-fields-row > .form-country-selector-container > .flag-image {
+	width: 10rem;
+}
+.pledgx-form > .form-top-container > .form-fields-container > .form-fields-row > .form-country-selector-container > .flag-text {
+	font-size: 1.7rem;
+	color: var(--colors-subtle-text);
+}
+
+.pledgx-form > .form-top-container > .form-fields-container > .form-country-row {
+	display: flex;
+}
+.pledgx-form > .form-top-container > .form-fields-container > .form-country-row > div:not(:last-child) {
+	margin-right: 1rem;
+}
+
+
+
+
+
+
+
+/*
+<div className='form-fields-container'>
+					<div className='form-fields-row form-name-row'>
+						<div className='form-element-container'>
+							<label className='form-element-label' htmlFor='first_name'>{ t('form:first_name') }</label>
+							<input
+								id='first_name'
+								className='form-element-input'
+*/
+
+
+
 
 
 
@@ -150,7 +257,7 @@ button {
 .pledgx-dropdown > .dropdown-button > .dropdown-button--1 > i {
 	font-size: 2.5rem;
 	font-weight: 300;
-	color: var(--colors-brand-green-primary)
+	color: var(--colors-main-highlight-bg)
 }
 .pledgx-dropdown > .dropdown-button > .dropdown-button--2 {
 	grid-area: text;
@@ -216,7 +323,7 @@ button {
 .pledgx-dropdown > .dropdown-content > .dropdown-item:hover {
 	border-radius: 5px;
 	color: white;
-	background-color: var(--colors-brand-green-secondary);
+	background-color: var(--colors-main-highlight);
 }
 
 .pledgx-dropdown > .dropdown-content > .dropdown-item > .dropdown-item--checkbox {
