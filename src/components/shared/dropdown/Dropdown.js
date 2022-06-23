@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, Fragment } from "react";
 
-function Dropdown ({ value, optionsDictList, optionsList, detailedReturn=false, dropdownStyle="pledgx-dropdown", dropdownId, checkboxStyle=false, placeholder="Select", buttonType="submit", buttonText, buttonEnd=<i className="material-icons">keyboard_arrow_down</i>, translationCategory='main', allowEmptyValues=false, onSelect, extraData={}, disabled=false, onOpen }) {
+function Dropdown ({ value, optionsDictList, optionsList, displayOption='title', detailedReturn=false, dropdownStyle="pledgx-dropdown", dropdownId, checkboxStyle=false, placeholder="Select", buttonType="submit", buttonText, buttonEnd=<i className="material-icons">keyboard_arrow_down</i>, translationCategory='main', allowEmptyValues=false, onSelect, extraData={}, disabled=false, onOpen }) {
 	const dropdownRef = useRef();
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -89,7 +89,7 @@ function Dropdown ({ value, optionsDictList, optionsList, detailedReturn=false, 
 										)
 									}
 								</div>
-								<div className='dropdown-item--icon'>{ option.icon }</div><div className={ `${dropdownStyle}-item--text` }><span>{ option.title }</span></div>
+								<div className='dropdown-item--icon'>{ option.icon }</div><div className={ `${dropdownStyle}-item--text` }><span>{ option[displayOption] }</span></div>
 							</li>
 						</Fragment>
 					)
