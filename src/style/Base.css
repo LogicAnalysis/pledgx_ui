@@ -1,0 +1,42 @@
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+html {
+	box-sizing: border-box;
+	font-size: 62.5%;
+	scroll-behavior: smooth;
+}
+
+body {
+	/*font-family: 'Lato', sans-serif;*/
+	font-weight: 400;
+	line-height: 1.6;
+	--lh: 1.6;
+	color: var(--colors-main-text);
+	background-color: var(--colors-light-bg_1);
+	background-size: cover;
+	background-repeat: no-repeat;
+
+	min-height: 100vh;
+}
+
+.App {
+	user-select: none;
+}
+
+/* Hide number increment arrows on Firefox */
+input[type=number] {
+	-moz-appearance: textfield;
+}
+
+/* Hide number increment arrows on Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
