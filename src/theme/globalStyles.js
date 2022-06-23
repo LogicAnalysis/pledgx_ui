@@ -11,10 +11,12 @@ export const GlobalStyles = createGlobalStyle`
 
 	:root {
 		/* Colors - Colors */
-		--colors-main-background: ${({ theme }) => theme.colorsMainBgColor};
-		--colors-main-text: ${({ theme }) => theme.colorsMainTextColor};
-
 		--colors-light-bg_1:  ${({ theme }) => theme.colorsLightBg_1};
+		--colors-main-background: ${({ theme }) => theme.colorsMainBgColor};
+		--colors-main-highlight: ${Colors.GREEN_PASTEL};
+		--colors-main-highlight-bg: ${Colors.GREEN_SUBDUED};
+		--colors-main-text: ${({ theme }) => theme.colorsMainTextColor};
+		--colors-primary-bg: ${({ theme }) => theme.colorsPrimaryColorBg};
 
 		/* Attention */
 		--colors-danger: ${Colors.RED};

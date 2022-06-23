@@ -5,6 +5,8 @@ export const MAIN_BACKGROUND_COLOR_LIGHT = '#FFFFFF';
 export const MAIN_BACKGROUND_COLOR_DARK = '#000000';
 export const MAIN_TEXT_COLOR_LIGHT = '#707070';
 export const MAIN_TEXT_COLOR_DARK = '#999999';
+export const PRIMARY_BG_COLOR_DARK = '#000000';
+export const PRIMARY_BG_COLOR_LIGHT = '#FFFFFF';
 
 // Additional Colors
 
@@ -12,3 +14,6 @@ export const ORANGE = "#F0AF4E";
 export const ORANGE_RGB = "240,175,78";
 export const RED = "#C44444";
 export const RED_RGB = "196,68,68";
+
+export const GREEN_PASTEL = '#24ad82';
+export const GREEN_SUBDUED = '#145c45';
