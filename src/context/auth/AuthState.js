@@ -41,10 +41,10 @@ const AuthState = props => {
 	const setLoading = () => dispatch({ type: SET_LOADING });
 
 	async function getUser(user_id) {
-		localStorage.setItem('current_user_id', JSON.stringify(user_id));
 		setLoading();
 		try {
-			const res = await axios.post(API_PATH + API_VERSION + '/get_user/', { user_id: user_id });
+			const res = await axios.post(API_PATH + API_VERSION + '/get_user', { user_id: user_id });
+			localStorage.setItem('current_user_id', JSON.stringify(user_id));
 			dispatch({
 				type: GET_USER_SUCCESS,
 				payload: res.data.user
@@ -60,10 +60,10 @@ const AuthState = props => {
 	async function getUserList() {
 		setLoading();
 		try {
-			const res = await axios.get(API_PATH + API_VERSION + '/get_user_list/');
+			const res = await axios.get(API_PATH + API_VERSION + '/get_user_list');
 			dispatch({
 				type: GET_USER_LIST_SUCCESS,
-				payload: res.data.user
+				payload: res.data.users
 			});
 		} catch (err) {
 			dispatch({
