@@ -2,9 +2,10 @@ import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import authContext from '../../context/auth/authContext';
+
 import classes from './style/Main.module.css';
 
-/*import { ReactComponent as PrepLessLogo } from '../../preplessLogoFull.svg'*/
+import Form from '../shared/form/Form';
 
 function Main() {
 	localStorage.setItem('lastPage', '/main')
@@ -26,7 +27,9 @@ function Main() {
 	
 	return (
 		<div className={ classes.container }>
-			<span>FUTURE CONTENT</span>
+			<div className={ classes['form-container'] }>
+				<Form id='main_form' />
+			</div>
 		</div>
 	)
 }
