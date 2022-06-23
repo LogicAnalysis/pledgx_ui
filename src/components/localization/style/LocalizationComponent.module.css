@@ -1,0 +1,89 @@
+.dropdown {
+	/*position: relative;*/
+}
+
+.dropdown > :global(.dropdown-button),
+.dropdown > :global(.dropdown-button):focus {
+	outline: none;
+	border: 0;
+	background-color: transparent;
+}
+
+.dropdown > :global(.dropdown-button > .dropdown-button--2) {
+	display: flex;
+	align-items: center;
+	color:  var(--colors-main-highlight-bg);
+	text-transform: uppercase;
+	margin-left: 1rem;
+	font-size: 2rem;
+	font-weight: 700;
+}
+
+.dropdown > :global(.dropdown-content) {
+	position: absolute;
+	/*top: 4.35rem;
+	left: 0;*/
+	/*min-width: 10rem;*/
+	min-height: 5rem;
+	padding: 1rem;
+	margin: 0 auto;
+	cursor: pointer;
+	background-color: var(--colors-primary-bg);
+
+	width: 100%;
+	max-height: 50vh;
+	overflow-y: scroll;
+
+	border-radius: 0 0 20px 20px;
+	outline: none;
+
+    /* Font settings */
+    font-weight: bold;
+
+	list-style: none;
+
+	/*box-shadow: 0px .5rem 1rem 0px rgba(0,0,0,0.2);*/
+	box-shadow: 0px 3px 6px #00000029;
+	z-index: 999;
+	animation: fadein .5s linear;
+}
+
+.dropdown > :global(.dropdown-content > .dropdown-item) {
+	padding: .5rem 2rem .5rem 1rem;
+	font-size: 1.5rem;
+	font-weight: 400;
+	display: grid;
+	grid-template-columns: 3.5rem 1fr;
+	grid-template-areas:
+		'icon text';
+
+	justify-content: start;
+	align-items: center;
+	overflow: hidden;
+}
+.dropdown > :global(.dropdown-content > .dropdown-item):hover {
+	border-radius: 5px;
+	color: white;
+	background-color: var(--colors-main-highlight);
+}
+
+.dropdown > :global(.dropdown-content > .dropdown-item > .dropdown-item--icon) {
+	grid-area: icon;
+	display: inline-flex;
+	vertical-align: middle;
+}
+
+.pl-dropdown > .dropdown-content > .dropdown-item > .dropdown-item--text {
+	grid-area: text;
+}
+
+@keyframes fadein {
+	0% {
+		max-height: 0;
+		overflow: hidden;
+	}
+	100% {
+		opacity: 1;
+		max-height: auto;
+	}
+}
