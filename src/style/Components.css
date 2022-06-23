@@ -102,6 +102,140 @@ button {
 	min-width: 0;
 }
 
+/* ----------------------- Dropdown ----------------------- */
+.pledgx-dropdown {
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+.pledgx-dropdown > .dropdown-button {
+	/* TODO: This implementation is buggy on <v14.0 Safari. Consider using flexbox instead */
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	grid-template-areas:
+		'icon text dropdown';
+
+	justify-content: start;
+	align-items: center;
+
+	width: 100%;
+	height: 100%;
+
+	font-size: 1.5rem;
+	text-decoration: none;
+	border: none;
+	outline: none;
+	color:  var(--colors-main-text);
+	background-color: var(--colors-primary-bg);
+
+	box-shadow: 0px 3px 6px #00000029;
+	padding: .7rem 2rem;
+	overflow: hidden;
+}
+.pledgx-dropdown > .dropdown-button.closed {
+	border-radius: 50px;
+	transition: all .2s ease-in-out;
+}
+.pledgx-dropdown > .dropdown-button.open {
+	border-radius: 20px 20px 0 0;
+	transition: all .2s ease-in-out;
+}
+
+.pledgx-dropdown > .dropdown-button > .dropdown-button--1 {
+	grid-area: icon;
+	justify-self: start;
+	display: inline-flex;
+	vertical-align: middle;
+}
+.pledgx-dropdown > .dropdown-button > .dropdown-button--1 > i {
+	font-size: 2.5rem;
+	font-weight: 300;
+	color: var(--colors-brand-green-primary)
+}
+.pledgx-dropdown > .dropdown-button > .dropdown-button--2 {
+	grid-area: text;
+	justify-self: start;
+	font-size: 1.5rem;
+	min-width: 0;
+	max-width:100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding: 0 1rem;
+}
+
+.pledgx-dropdown > .dropdown-button > .dropdown-button--3 {
+	grid-area: dropdown;
+	justify-self: end;
+	display: inline-flex;
+	vertical-align: middle;
+}
+.pledgx-dropdown > .dropdown-button > .dropdown-button--3 > i {
+	font-size: 2.5rem;
+	font-weight: 700;
+}
+
+.pledgx-dropdown > .dropdown-content {
+	position: absolute;
+	/*min-width: 10rem;*/
+	min-height: 5rem;
+	padding: 1rem;
+	margin: 0 auto;
+	cursor: pointer;
+	background-color: var(--colors-primary-bg);
+
+	width: 100%;
+
+	border-radius: 0 0 20px 20px;
+	outline: none;
+
+	/* Font settings */
+	font-weight: bold;
+
+	list-style: none;
+
+	/*box-shadow: 0px .5rem 1rem 0px rgba(0,0,0,0.2);*/
+	box-shadow: 0px 3px 6px #00000029;
+	z-index: 999;
+	animation: fadein .5s;
+}
+
+.pledgx-dropdown > .dropdown-content > .dropdown-item {
+	padding: .5rem 2rem .5rem 1rem;
+	font-size: 1.5rem;
+	font-weight: 400;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	grid-template-areas:
+		'icon text';
+
+	justify-content: start;
+	align-items: center;
+	overflow: hidden;
+}
+.pledgx-dropdown > .dropdown-content > .dropdown-item:hover {
+	border-radius: 5px;
+	color: white;
+	background-color: var(--colors-brand-green-secondary);
+}
+
+.pledgx-dropdown > .dropdown-content > .dropdown-item > .dropdown-item--checkbox {
+	grid-area: icon;
+	display: inline-flex;
+	vertical-align: middle;
+	margin-right: 1rem;
+}
+.pledgx-dropdown > .dropdown-content > .dropdown-item > .dropdown-item--icon {
+	grid-area: icon;
+	display: inline-flex;
+	vertical-align: middle;
+	margin-right: 1rem;
+}
+
+.pledgx-dropdown > .dropdown-content > .dropdown-item > .dropdown-item--text {
+	grid-area: text;
+}
+
 /* ------------------------------------------ MEDIA QUERIES ------------------------------------------ */
 
 @media only screen and (max-width: 420px) {
