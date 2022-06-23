@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, Fragment } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import Alerts from '../components/alerts/Alerts';
 
@@ -23,10 +23,10 @@ function MainContainer() {
 	return (
 		<Fragment>
 			<Alerts />
-			<Switch>
-				<Route exact path="/" render={() => <Redirect to="/main" />} />
+			<Routes>
+				<Route exact path="/" render={() => <Navigate to="/main" />} />
 				<Route exact path='/main' component={ Main } />
-			</Switch>
+			</Routes>
 		</Fragment>
 	);
 }

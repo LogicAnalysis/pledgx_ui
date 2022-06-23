@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { GlobalStyles } from './theme/globalStyles';
 
 import ThemeRouter from './theme/ThemeRouter';
@@ -27,9 +27,9 @@ function App() {
 				<BrowserRouter>
 					<GlobalStyles />
 					<div className="App" id="page-top">
-						<Switch>
+						<Routes>
 							<Route path="/" component={ MainContainer } />
-						</Switch>
+						</Routes>
 					</div>
 				</BrowserRouter>
 			</ThemeRouter>
