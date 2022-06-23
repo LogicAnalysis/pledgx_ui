@@ -1,8 +1,6 @@
 import React, { useEffect, useState, useRef, Fragment } from "react";
-import { useTranslation } from 'react-i18next';
 
-function Dropdown ({ value, optionsDictList, optionsList, detailedReturn=false, dropdownStyle="pl-dropdown", dropdownId, checkboxStyle=false, placeholder="Select", buttonType="submit", buttonText, buttonEnd=<i className="material-icons">keyboard_arrow_down</i>, translationCategory='misc', allowEmptyValues=false, onSelect, extraData={}, disabled=false, onOpen }) {
-	const { t } = useTranslation(['main']);
+function Dropdown ({ value, optionsDictList, optionsList, detailedReturn=false, dropdownStyle="pledgx-dropdown", dropdownId, checkboxStyle=false, placeholder="Select", buttonType="submit", buttonText, buttonEnd=<i className="material-icons">keyboard_arrow_down</i>, translationCategory='main', allowEmptyValues=false, onSelect, extraData={}, disabled=false, onOpen }) {
 	const dropdownRef = useRef();
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -91,7 +89,7 @@ function Dropdown ({ value, optionsDictList, optionsList, detailedReturn=false, 
 										)
 									}
 								</div>
-								<div className='dropdown-item--icon'>{ option.icon }</div><div className={ `${dropdownStyle}-item--text` }><span>{ t([translationCategory, ':', option.title].join('')) }</span></div>
+								<div className='dropdown-item--icon'>{ option.icon }</div><div className={ `${dropdownStyle}-item--text` }><span>{ option.title }</span></div>
 							</li>
 						</Fragment>
 					)
@@ -109,7 +107,7 @@ function Dropdown ({ value, optionsDictList, optionsList, detailedReturn=false, 
 				}
 				{
 					buttonText &&
-						<div className='dropdown-button--2'>{ t([translationCategory, ':', buttonText].join('')) }</div>
+						<div className='dropdown-button--2'>{ buttonText }</div>
 				}
 				{
 					buttonEnd &&
