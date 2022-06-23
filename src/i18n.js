@@ -2,16 +2,20 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 // French
+import form_fr from "./components/localization/locales/fr/form.json";
 import main_fr from "./components/localization/locales/fr/main.json";
 
 // English
+import form_en from "./components/localization/locales/en/form.json";
 import main_en from "./components/localization/locales/en/main.json";
 
 const resources = {
 	fr: {
+		form: form_fr,
 		main: main_fr
 	},
 	en: {
+		form: form_en,
 		main: main_en,
 	}
 };
