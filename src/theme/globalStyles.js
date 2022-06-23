@@ -15,8 +15,14 @@ export const GlobalStyles = createGlobalStyle`
 		--colors-main-background: ${({ theme }) => theme.colorsMainBgColor};
 		--colors-main-highlight: ${Colors.GREEN_PASTEL};
 		--colors-main-highlight-bg: ${Colors.GREEN_SUBDUED};
+		--colors-main-input-bg: ${({ theme }) => theme.colorsMainInputBg};
+		--colors-main-input-placeholder: ${({ theme }) => theme.colorsMainInputPlaceholder};
 		--colors-main-text: ${({ theme }) => theme.colorsMainTextColor};
+		--colors-orange: ${Colors.ORANGE};
+		--colors-orange-rgb: ${Colors.ORANGE_RGB};
 		--colors-primary-bg: ${({ theme }) => theme.colorsPrimaryColorBg};
+		--colors-subtle-highlight: ${({ theme }) => theme.colorsSubtleHighlight};
+		--colors-subtle-text: ${({ theme }) => theme.colorsSubtleText};
 
 		/* Attention */
 		--colors-danger: ${Colors.RED};
