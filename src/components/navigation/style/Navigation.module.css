@@ -1,0 +1,61 @@
+a,
+a > div,
+a > div > svg,
+a > div > span {
+	text-decoration: none !important;
+}
+.nav-container {
+	user-select: none;
+	background-color: var(--colors-main-background);
+	/* height: 9.37rem; */
+	/*margin: 1rem 6.5rem;*/
+	padding: 0 6.5rem;
+	height: 6rem;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.brand > a {
+	margin-right: .5rem;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	cursor: pointer;
+}
+.logo {
+	height: 4rem;
+	margin-right: 1rem;
+	/* filter: drop-shadow( .3rem .3rem .2rem rgba(0, 0, 0, .7)); */
+}
+
+.brand--text {
+	font-size: 3.28rem;
+}
+
+.nav--elements {
+	margin-left: .5rem;
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	position: relative;
+	height: 4rem;
+}
+
+.localization {
+	margin-right: 1rem;
+}
+
+.account {
+	max-width: 15rem;
+	display: flex;
+	align-items: center;
+}
+
+@media only screen and (max-width: 880px) {
+	.nav-container {
+		padding: 0 1rem;
+	}
+}
+
