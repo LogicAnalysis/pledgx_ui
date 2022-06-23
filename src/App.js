@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { GlobalStyles } from './theme/globalStyles';
 
