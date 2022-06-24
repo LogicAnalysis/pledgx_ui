@@ -55,6 +55,7 @@ button {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	margin: 3rem 0;
 }
 
 .pledgx-form > .form-top-container > .form-fields-container > .form-fields-row > .form-element-container {
@@ -96,7 +97,6 @@ button {
 
 .pledgx-form > .form-top-container > .form-fields-container > .form-fields-row > .form-image-radio {
 	padding: 1rem 2rem;
-	background-color: red;
 }
 
 .pledgx-form > .form-top-container > .form-fields-container > .form-fields-row > .form-country-selector-container {
@@ -134,27 +134,6 @@ button {
 	margin-left: .5rem;
 	margin-right: 1rem;
 }
-
-
-
-
-
-
-
-/*
-<div className='form-fields-container'>
-					<div className='form-fields-row form-name-row'>
-						<div className='form-element-container'>
-							<label className='form-element-label' htmlFor='first_name'>{ t('form:first_name') }</label>
-							<input
-								id='first_name'
-								className='form-element-input'
-*/
-
-
-
-
-
 
 
 /* ------------------------------------------------- Specific Elements ------------------------------------------------- */
@@ -353,7 +332,19 @@ button {
 
 /* ------------------------------------------ MEDIA QUERIES ------------------------------------------ */
 
-@media only screen and (max-width: 420px) {
+@media only screen and (max-width: 720px) {
 	/* pledgx-form */
+	.pledgx-form {
+		display: flex;
+		flex-direction: column;
+	}
 	
+	.pledgx-form > .form-top-container {
+		margin-bottom: 3rem;
+	}
+	.pledgx-form > .form-bottom-container {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+	}
 }
