@@ -47,6 +47,11 @@
 	z-index: 999;
 	animation: fadein .5s linear;
 	margin-top: 2rem;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+.dropdown > :global(.dropdown-content)::-webkit-scrollbar {
+	display: none;
 }
 
 .dropdown > :global(.dropdown-content > .dropdown-item) {
