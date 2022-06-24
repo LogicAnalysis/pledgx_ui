@@ -2,8 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
+import alertContext from '../../../context/alert/alertContext';
 import authContext from '../../../context/auth/authContext';
 
+import PreviewImage from '../../media/PreviewImage';
 import SpinnerDots from '../../loading/spinners/spinnerDots/SpinnerDots';
 
 import { ReactComponent as CanadaFlag } from '../../../static/ca.svg';
@@ -12,6 +14,7 @@ import { ReactComponent as USFlag } from '../../../static/us.svg';
 function Form(props) {
 	const { customStyle, id } = props;
 	const { t } = useTranslation(['form']);
+	const AlertContext = useContext(alertContext);
 	const AuthContext = useContext(authContext);
 
 	const [state, setState] = useState({
@@ -41,8 +44,26 @@ function Form(props) {
 					enteredInfo: { ...state.enteredInfo, [payload.target.id]: payload.target.value }
 				});
 				break;
+			case 'IMAGE_CHANGED':
+				// This is not actually storing the file location, as the browser has no access to the user's file structure
+				// In production, storing and retrieving this from S3 or other cloud storage providers would be the most obvious choice
+				/*
+				setState({
+					...state,
+					enteredInfo: { ...state.enteredInfo, profile_photo: payload }
+				});
+				*/
+				break;
 			case 'SAVE':
-				AuthContext.updateUser(state.enteredInfo);
+				if (state.enteredInfo.first_name) {
+					// Only allow saving if first name is entered, as it is used to identify users
+					AuthContext.updateUser(state.enteredInfo);
+				} else {
+					AlertContext.setAlert({
+						title: t('form:missing_name'),
+						type: 'danger'
+					});
+				};
 				break;
 		};
 	};
@@ -51,13 +72,17 @@ function Form(props) {
 		<form
 			className={ customStyle }
 			key={ id }
-			noValidate={ true }
+			//noValidate={ true }
 			onSubmit={ (e) => e.preventDefault() }
 		>
 			<div className='form-top-container'>
 				<div className='form-title header-2'>{ t('form:edit_your_contact_info') }</div>
 				<div className='form-pfp-area'>
-					<div className='photo-component' style={{ backgroundColor: 'red', height: 200, width: 200, margin: '3rem 0' }}></div>
+					<PreviewImage
+						id='item_photo'
+						newImageLink={ (imageLink) => handleInteraction({ action: 'IMAGE_CHANGED', payload: imageLink }) }
+						startingImage={ (AuthContext.current_user && AuthContext.current_user.profile_photo) ? AuthContext.current_user.profile_photo : null}
+					/>
 				</div>
 				<div className='form-fields-container'>
 					<div className='form-fields-row form-name-row'>
@@ -68,6 +93,7 @@ function Form(props) {
 								className='form-element-input'
 								onChange={ (e) => handleInteraction({ action: 'ELEMENT_CHANGED', payload: e }) }
 								value={ state.enteredInfo.first_name || '' }
+								placeholder='John'
 							/>
 						</div>
 						<div className='form-element-container'>
@@ -77,6 +103,7 @@ function Form(props) {
 								className='form-element-input'
 								onChange={ (e) => handleInteraction({ action: 'ELEMENT_CHANGED', payload: e }) }
 								value={ state.enteredInfo.last_name || '' }
+								placeholder='Doe'
 							/>
 						</div>
 					</div>
@@ -88,6 +115,8 @@ function Form(props) {
 								className='form-element-input'
 								onChange={ (e) => handleInteraction({ action: 'ELEMENT_CHANGED', payload: e }) }
 								value={ state.enteredInfo.phone_number || '' }
+								placeholder='12345678'
+								type='number'
 							/>
 						</div>
 					</div>
@@ -99,6 +128,7 @@ function Form(props) {
 								className='form-element-input'
 								onChange={ (e) => handleInteraction({ action: 'ELEMENT_CHANGED', payload: e }) }
 								value={ state.enteredInfo.job_title || '' }
+								placeholder='Accountant'
 							/>
 						</div>
 					</div>
