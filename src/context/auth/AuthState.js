@@ -6,6 +6,7 @@ import authReducer from './authReducer';
 import envContext from '../env/envContext';
 
 import {
+	CLEAR_CURRENT_USER,
 	GET_USER_FAIL,
 	GET_USER_SUCCESS,
 	GET_USER_LIST_FAIL,
@@ -37,6 +38,7 @@ const AuthState = props => {
 	const [state, dispatch] = useReducer(authReducer, initialState);
 
 	const clearCallback = (callback) => dispatch({ type: CLEAR_CALLBACK, payload: callback });
+	const clearCurrentUser = () => dispatch({ type: CLEAR_CURRENT_USER });
 	const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
 	const setLoading = () => dispatch({ type: SET_LOADING });
 
@@ -73,25 +75,35 @@ const AuthState = props => {
 		};
 	};
 	
-	/*
-	async function updateUser(formData) {
+	async function updateUser(user_details) {
 		setLoading();
 		try {
-			// eslint-disable-next-line
-			const res = await axios.patch(API_PATH + API_VERSION + '/account/manage/', formData);
-			dispatch({
-				type: USER_LOADED,
-				payload: res.data
-			});
+			const res = await axios.post(API_PATH + API_VERSION + '/update_user', { user_details: user_details });
+			if (user_details.id) {
+				dispatch({
+					type: UPDATE_USER_SUCCESS,
+					payload: {
+						user_details: user_details
+					}
+				});	
+			} else if (res.data.user_id) {
+				var new_user_list = state.user_list
+				new_user_list.push({ ...user_details, id: res.data.user_id });
+				dispatch({
+					type: UPDATE_USER_SUCCESS,
+					payload: {
+						user_details: user_details,
+						user_list: new_user_list
+					}
+				});	
+			}
 		} catch (err) {
-			extracted_error = extractErrorFromApiResponse({ error: err });
 			dispatch({
 				type: UPDATE_USER_FAIL,
-				payload: extracted_error
+				payload: err.response.data.error
 			});
 		};
 	};
-	*/
 
 	return <authContext.Provider
 		value={{
@@ -99,9 +111,11 @@ const AuthState = props => {
 			current_user: state.current_user,
 			user_list: state.user_list,
 			clearCallback,
+			clearCurrentUser,
 			clearErrors,
 			getUser,
-			getUserList
+			getUserList,
+			updateUser
 		}}
 	>
 		{ props.children }

@@ -1,4 +1,5 @@
 import {
+	CLEAR_CURRENT_USER,
 	GET_USER_FAIL,
 	GET_USER_SUCCESS,
 	GET_USER_LIST_FAIL,
@@ -21,6 +22,17 @@ export default (state, action) => {
 					...state.callback,
 					[action.payload]: false
 				}
+			};
+		case CLEAR_CURRENT_USER:
+			return {
+				...state,
+				callback: {
+					...state.callback,
+					current_user: true
+				},
+				loading: false,
+				error: null,
+				current_user: null
 			};
 		case CLEAR_ERRORS:
 			return {
@@ -74,6 +86,28 @@ export default (state, action) => {
 			return {
 				...state,
 				loading: true
+			};
+		case UPDATE_USER_FAIL:
+			return {
+				...state,
+				callback: {
+					...state.callback,
+					current_user: false
+				},
+				loading: false,
+				error: action.payload
+			};
+		case UPDATE_USER_SUCCESS:
+			return {
+				...state,
+				callback: {
+					...state.callback,
+					current_user: true
+				},
+				loading: false,
+				error: null,
+				current_user: action.payload.user_details,
+				user_list: action.payload.user_list || state.user_list
 			};
 		default:
 			return state;
