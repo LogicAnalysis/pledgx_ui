@@ -4,11 +4,13 @@ import { useTranslation } from 'react-i18next';
 
 import authContext from '../../../context/auth/authContext';
 
+import SpinnerDots from '../../loading/spinners/spinnerDots/SpinnerDots';
+
 import { ReactComponent as CanadaFlag } from '../../../static/ca.svg';
 import { ReactComponent as USFlag } from '../../../static/us.svg';
 
 function Form(props) {
-	const { customStyle, data, id } = props;
+	const { customStyle, id } = props;
 	const { t } = useTranslation(['form']);
 	const AuthContext = useContext(authContext);
 
@@ -17,19 +19,30 @@ function Form(props) {
 	});
 
 	useEffect(() => {
-		if (AuthContext.current_user) {
+		if (AuthContext.current_user || (Object.keys(state.enteredInfo).length > 0)) {
 			setState({
 				...state,
-				enteredInfo: AuthContext.current_user
+				enteredInfo: AuthContext.current_user || {}
 			});
 		};
 	}, [AuthContext.current_user]);
 
 	function handleInteraction({ action, payload }) {
 		switch(action) {
+			case 'COUNTRY_CHANGED':
+				setState({
+					...state,
+					enteredInfo: { ...state.enteredInfo, country: payload }
+				});
+				break;
 			case 'ELEMENT_CHANGED':
+				setState({
+					...state,
+					enteredInfo: { ...state.enteredInfo, [payload.target.id]: payload.target.value }
+				});
 				break;
 			case 'SAVE':
+				AuthContext.updateUser(state.enteredInfo);
 				break;
 		};
 	};
@@ -54,7 +67,7 @@ function Form(props) {
 								id='first_name'
 								className='form-element-input'
 								onChange={ (e) => handleInteraction({ action: 'ELEMENT_CHANGED', payload: e }) }
-								defaultValue={ state.enteredInfo.first_name || '' }
+								value={ state.enteredInfo.first_name || '' }
 							/>
 						</div>
 						<div className='form-element-container'>
@@ -63,7 +76,7 @@ function Form(props) {
 								id='last_name'
 								className='form-element-input'
 								onChange={ (e) => handleInteraction({ action: 'ELEMENT_CHANGED', payload: e }) }
-								defaultValue={ state.enteredInfo.last_name || '' }
+								value={ state.enteredInfo.last_name || '' }
 							/>
 						</div>
 					</div>
@@ -74,7 +87,7 @@ function Form(props) {
 								id='phone_number'
 								className='form-element-input'
 								onChange={ (e) => handleInteraction({ action: 'ELEMENT_CHANGED', payload: e }) }
-								defaultValue={ state.enteredInfo.phone_number || '' }
+								value={ state.enteredInfo.phone_number || '' }
 							/>
 						</div>
 					</div>
@@ -85,29 +98,40 @@ function Form(props) {
 								id='job_title'
 								className='form-element-input'
 								onChange={ (e) => handleInteraction({ action: 'ELEMENT_CHANGED', payload: e }) }
-								defaultValue={ state.enteredInfo.job_title || '' }
+								value={ state.enteredInfo.job_title || '' }
 							/>
 						</div>
 					</div>
+					<div className='form-fields-row country-label-row'>
+						<label className='form-element-label' htmlFor='job_title'>{ t('form:Country') }</label>
+					</div>
 					<div className='form-fields-row form-country-row'>
-						<div className={ ['form-country-selector-container', (AuthContext.current_user && (AuthContext.current_user.country === 'CA')) && 'selected'].join(' ') }>
+						<div
+							className={ ['form-country-selector-container', (state.enteredInfo.country === 'CA') && 'selected'].join(' ') }
+							onClick={ () => handleInteraction({ action: 'COUNTRY_CHANGED', payload: 'CA' }) }
+						>
 							<CanadaFlag className='flag-image'/>
 							<span className='flag-text'>Canada</span>
 						</div>
-						<div className={ ['form-country-selector-container', (AuthContext.current_user && (AuthContext.current_user.country === 'US')) && 'selected'].join(' ') }>
+						<div
+							className={ ['form-country-selector-container', (state.enteredInfo.country === 'US') && 'selected'].join(' ') }
+							onClick={ () => handleInteraction({ action: 'COUNTRY_CHANGED', payload: 'US' }) }
+						>
 							<USFlag className='flag-image'/>
 							<span className='flag-text'>USA</span>
 						</div>
-						
-
-
-
-
 					</div>
 				</div>
 			</div>
 			<div className='form-bottom-container'>
-				<button type='button' className='pledgx-form-btn' value='Test' onClick={ handleInteraction({ action: 'SAVE' }) }>{ t('form:save') }</button>
+				<button type='button' className='pledgx-form-btn' value='Test' onClick={ () => handleInteraction({ action: 'SAVE' }) }>
+					{
+						AuthContext.loading ?
+							<SpinnerDots color='white' />
+						:
+							t('form:save') 
+					}
+				</button>
 			</div>
 		</form>
 	);
@@ -115,7 +139,6 @@ function Form(props) {
 
 Form.propTypes = {
 	customStyle: propTypes.string,
-	data: propTypes.object,
 	id: propTypes.string.isRequired
 };
 
