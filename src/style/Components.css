@@ -19,13 +19,14 @@ button {
 	border-radius: 5px;
 	background-color: var(--colors-orange);
 	color: white;
-	padding: .5rem 4rem;
 	font-size: 1rem;
 	transition: all .2s;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
+	height: 5rem;
+	width: 15rem;
 }
 .pledgx-form-btn:hover {
 	box-sizing: border-box;
@@ -106,6 +107,7 @@ button {
 	background-color: var(--colors-main-input-bg);
 	border: 1px solid var(--colors-subtle-highlight);
 	border-radius: 10px;
+	cursor: pointer;
 }
 .pledgx-form > .form-top-container > .form-fields-container > .form-fields-row > .form-country-selector-container.selected {
 	background-color: rgba(var(--colors-orange-rgb), .3);
@@ -120,10 +122,16 @@ button {
 	color: var(--colors-subtle-text);
 }
 
+.pledgx-form > .form-top-container > .form-fields-container > .country-label-row {
+	margin-left: .5rem;
+	font-size: 1.2rem;
+}
+
 .pledgx-form > .form-top-container > .form-fields-container > .form-country-row {
 	display: flex;
 }
 .pledgx-form > .form-top-container > .form-fields-container > .form-country-row > div:not(:last-child) {
+	margin-left: .5rem;
 	margin-right: 1rem;
 }
 
