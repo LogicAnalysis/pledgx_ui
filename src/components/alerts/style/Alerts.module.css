@@ -31,7 +31,7 @@
 	min-height: 4rem;
 	padding: 2rem;
 	border-radius: 1rem;
-	color: var(--heading-primary-color);
+	color: white;
 
 	display: flex;
 	align-items: center;
@@ -41,7 +41,7 @@
 	min-height: 4rem;
 	padding: 2rem;
 	border-radius: 1rem;
-	color: var(--heading-primary-color);
+	color: white;
 
 	display: grid;
 	grid-template-columns: auto 6fr 1fr;
@@ -101,10 +101,5 @@
 
 .alert-warning {
 	background-color: #F0AD4EAA;
-	backdrop-filter: blur(2px);
-}
-
-.alert-notification {
-	background-color: rgba(var(--colors-brand-green-secondary_rgb), 99);
 	backdrop-filter: blur(2px);
 }
