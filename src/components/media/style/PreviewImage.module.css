@@ -1,0 +1,38 @@
+.container {
+	height: 15rem;
+	width: 15rem;
+	position: relative;
+}
+
+.image {
+	height: 15rem;
+	width: 15rem;
+	border-radius: 100px;
+	object-fit: contain;
+}
+.empty-image {
+	background-color: var(--colors-main-highlight-bg);
+}
+
+.edit-container {
+	position: absolute;
+	bottom: 5%;
+	right: 5%;
+	height: 4rem;
+	width: 4rem;
+	background-color: var(--colors-orange);
+	border-radius: 50px;
+}
+
+.edit-container > label {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.edit-container > input {
+	display: none;
+}
