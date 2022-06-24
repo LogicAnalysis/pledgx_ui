@@ -7,6 +7,7 @@ import classes from './style/Navigation.module.css';
 
 import AccountButton from './AccountButton';
 import LocalizationComponent from '../../components/localization/LocalizationComponent';
+import ThemeButton from './ThemeButton';
 
 import PledgeXLogo from '../../PledgXLogo.png';
 import PledgeXLogoMini from '../../PledgXLogoMini.png';
@@ -29,6 +30,9 @@ function Navigation() {
 				</Link>
 			</div>
 			<div className={ classes['nav--elements'] }>
+				<div className={ classes.theme }>
+					<ThemeButton />
+				</div>
 				<div className={ classes.localization }>
 					<LocalizationComponent />
 				</div>
