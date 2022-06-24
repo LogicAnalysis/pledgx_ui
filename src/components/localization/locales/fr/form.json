@@ -3,6 +3,7 @@
 	"first_name": "Prénom",
 	"job_title": "Titre d'emploi",
 	"last_name": "Nom de famille",
+	"missing_name": "Prénom manquant",
 	"phone_number": "Numéro de téléphone",
 	"save": "réserver"
 }
