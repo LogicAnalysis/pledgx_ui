@@ -7,8 +7,6 @@ import classes from './style/ThemeButton.module.css';
 function ThemeButton() {
 	const PrefContext = useContext(prefContext);
 
-	console.log(PrefContext)
-
 	function toggleTheme() {
 		PrefContext.switchTheme();
 	}
