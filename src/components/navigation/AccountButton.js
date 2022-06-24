@@ -34,7 +34,7 @@ function AccountButton(props) {
 			<div className={ classes.container }>
 				<Dropdown
 					placeholder={ buttonIcon }
-					buttonText={ AuthContext.current_user ? AuthContext.current_user.first_name : 'New Account' }
+					buttonText={ AuthContext.current_user ? AuthContext.current_user.first_name : t('main:new_user') }
 					onSelect={ id => handleInteraction({ action: 'SELECT_ACCOUNT', payload: id }) }
 					optionsDictList={ buttonOptions }
 					dropdownStyle={ !customStyle ? 'pledgx-dropdown' : customStyle }
