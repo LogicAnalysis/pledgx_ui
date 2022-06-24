@@ -11,23 +11,25 @@ import SpinnerDots from '../loading/spinners/spinnerDots/SpinnerDots';
 
 function AccountButton(props) {
 	const { icon, customStyle } = props;
-	const { t } = useTranslation(['common']);
+	const { t } = useTranslation(['main']);
 	const AuthContext = useContext(authContext);
 
 	const buttonIcon = icon ? <i className='material-icons'>person</i> : '';
 
 	function handleInteraction({ action, payload }) {
 		switch(action) {
-			case 'NEW_ACCOUNT':
-				break;
 			case 'SELECT_ACCOUNT':
-				AuthContext.getUser(payload);
+				if (payload === 'NEW_ACCOUNT') {
+					AuthContext.clearCurrentUser();
+				} else {
+					AuthContext.getUser(payload);
+				};
 				break;
 		};
 	};
 
-	if (AuthContext.user_list && AuthContext.user_list.length > 0) {
-		var buttonOptions = [{ title: 'New Account', id: 'NEW_ACCOUNT', icon: <i className='material-icons'>person_add</i>}].concat(AuthContext.user_list);
+	if ((AuthContext.user_list && AuthContext.user_list.length > 0) || AuthContext.current_user) {
+		var buttonOptions = [{ first_name: 'New', id: 'NEW_ACCOUNT', icon: <i className='material-icons'>person_add</i>}].concat(AuthContext.user_list);
 		return (
 			<div className={ classes.container }>
 				<Dropdown
@@ -49,15 +51,8 @@ function AccountButton(props) {
 			)
 		} else {
 			return (
-				<div className={ customStyle ? customStyle : classes['no-options'] }>
-					<div>
-						{
-							AuthContext.current_user && AuthContext.current_user.first_name ?
-								AuthContext.current_user.first_name
-							:
-								'New User'
-						}
-					</div>
+				<div className={ [customStyle ? customStyle : classes['no-options'], 'truncate'].join(' ') }>
+					<div>{ t('main:new_user') }</div>
 				</div>
 			)
 		}
